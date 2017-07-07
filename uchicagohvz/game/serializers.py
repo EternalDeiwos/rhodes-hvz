@@ -6,9 +6,9 @@ class KillSerializer(serializers.ModelSerializer):
 		model = Kill
 		fields = ('id', 'killer', 'victim', 'location', 'date', 'points')
 
-	killer = serializers.SerializerMethodField()
-	victim = serializers.SerializerMethodField()
-	location = serializers.SerializerMethodField()
+	killer = serializers.SerializerMethodField(method_name='get_killer')
+	victim = serializers.SerializerMethodField(method_name='get_victim')
+	location = serializers.SerializerMethodField(method_name='get_location')
 
 	def get_killer(self, obj):
 		return obj.killer.display_name
@@ -26,8 +26,8 @@ class MissionSerializer(serializers.ModelSerializer):
 		model = Mission
 		fields = ('id', 'name', 'end_date', 'img', 'location', 'rtype')
 
-	location = serializers.SerializerMethodField()
-	rtype = serializers.SerializerMethodField()
+	location = serializers.SerializerMethodField(method_name='get_location')
+	rtype = serializers.SerializerMethodField(method_name='get_rtype')
 
 	def get_location(self, obj):
 		if not obj.pos:
