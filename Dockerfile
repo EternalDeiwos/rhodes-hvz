@@ -2,7 +2,7 @@ FROM python:2
 
 RUN mkdir /app
 
-VOLUME /app
+COPY . /app
 
 WORKDIR /app
 

@@ -38,8 +38,6 @@ services:
       - celery
       - memcached
     restart: always
-    volumes:
-      - ./:/app
     environment:
       - WORKERS=4
     ports:
