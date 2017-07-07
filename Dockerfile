@@ -6,7 +6,8 @@ COPY . /app
 
 WORKDIR /app
 
-RUN apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev python-psycopg2
+RUN apt-get update
+RUN apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev python-psycopg2 -y
 RUN pip install -r ./requirements.txt
 RUN python manage.py syncdb --noinput
 RUN python manage.py schemamigration users --initial
