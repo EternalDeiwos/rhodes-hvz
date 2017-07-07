@@ -32,6 +32,10 @@ REST_FRAMEWORK = {
 # Email settings
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 CELERY_EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+CELERY_EMAIL_TASK_CONFIG = {
+    'queue': 'email',
+    'rate_limit': '20/m'
+}
 
 try:
     from secrets import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
