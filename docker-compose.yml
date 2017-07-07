@@ -14,7 +14,7 @@ services:
     image: memcached:alpine
     restart: always
     mem_limit: 128M
-    mem_reservation: 64M
+    # mem_reservation: 64M
 
   redis:
     image: redis:alpine
