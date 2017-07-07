@@ -16,3 +16,4 @@ django-geoposition
 django-recaptcha
 python-memcached
 haystack
+psycopg2
