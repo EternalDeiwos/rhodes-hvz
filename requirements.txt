@@ -13,7 +13,6 @@ dealer>=1.1.0
 requests
 django-suit
 django-geoposition
-django-memcache
 django-recaptcha
 python-memcached
 haystack
