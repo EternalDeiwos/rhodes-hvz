@@ -1,0 +1,49 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:alpine
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=hvzhvz
+      - POSTGRES_USER=hvz
+    user: 1004
+
+  memcached:
+    image: memcached:alpine
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  redis:
+    image: redis:alpine
+    restart: always
+
+  celery:
+    build: rhodes-hvz
+    restart: always
+    links:
+      - postgres:db
+      - redis
+      - memcached
+    environment:
+      - C_FORCE_ROOT=true
+    user: 1004
+    command: "celery ... worker"
+
+  hvz:
+    build: rhodes-hvz
+    links:
+      - postgres:db
+      - redis
+      - celery
+      - memcached
+    restart: always
+    user: 1004
+    ports:
+      - "127.0.01:5001:80"
