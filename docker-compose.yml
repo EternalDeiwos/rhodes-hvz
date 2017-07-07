@@ -8,7 +8,6 @@ services:
     environment:
       - POSTGRES_PASSWORD=hvzhvz
       - POSTGRES_USER=hvz
-    user: "1004"
 
   memcached:
     image: memcached:alpine
