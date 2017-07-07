@@ -42,5 +42,5 @@ EMAIL_USE_TLS = True
 MAIL_USE_TLS = True
 
 # Chat settings
-CHAT_SERVER_URL = 'https://hvz.rucus.me/chat'
-CHAT_ADMIN_URL = 'https://hvz.rucus.me/admin'
+CHAT_SERVER_URL = '//hvz.gryphus.io/chat'
+CHAT_ADMIN_URL = '//hvz.gryphus.io/admin'
