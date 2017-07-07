@@ -34,7 +34,7 @@ services:
     environment:
       - C_FORCE_ROOT=true
     user: 1004
-    command: "celery ... worker"
+    command: "celery worker"
 
   hvz:
     build: rhodes-hvz
