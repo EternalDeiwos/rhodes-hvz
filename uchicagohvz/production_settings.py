@@ -2,10 +2,10 @@ from local_settings import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['hvz.rucus.me', '46.101.29.8', '127.0.0.1']
+ALLOWED_HOSTS = ['hvz.gryphus.io']
 
 ADMINS = (
-    ('Administrator', 'admin@rucus.me'),
+    ('Administrator', 'greg+hvz@gryphus.io'),
 )
 
 # Database
