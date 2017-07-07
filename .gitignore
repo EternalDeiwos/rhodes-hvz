@@ -45,3 +45,5 @@ secrets.py
 db.sqlite3
 migrations/
 /uchicagohvz/secrets.py
+
+hvz_env
