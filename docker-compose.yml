@@ -21,7 +21,7 @@ services:
     restart: always
 
   celery:
-    build: rhodes-hvz
+    build: .
     restart: always
     links:
       - postgres:db
@@ -33,7 +33,7 @@ services:
     command: "celery worker"
 
   hvz:
-    build: rhodes-hvz
+    build: .
     links:
       - postgres:db
       - redis
