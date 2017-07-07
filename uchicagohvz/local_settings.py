@@ -173,7 +173,7 @@ LOGIN_REDIRECT_URL = "/"
 CACHES = {
 	'default': {
 		'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-		'LOCATION': '127.0.0.1:11211',
+		'LOCATION': 'memcached:11211',
 	}
 }
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
@@ -212,13 +212,13 @@ GEOPOSITION_MARKER_OPTIONS = {
 }
 
 # Celery configuration
-BROKER_URL = 'redis://localhost:6379/3'
+BROKER_URL = 'redis://redis:6379/3'
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'RU HvZ <admin@rucus.me>'
-SERVER_EMAIL = 'admin@rucus.me'
-SYMPA_FROM_EMAIL = 'admin@rucus.me'
+DEFAULT_FROM_EMAIL = 'RU HvZ <greg+hvz@gryphus.io>'
+SERVER_EMAIL = 'greg+hvz@gryphus.io'
+SYMPA_FROM_EMAIL = 'no-reply@hvz.gryphus.io'
 SYMPA_TO_EMAIL = ''
 
 # HvZ game configuration
@@ -236,8 +236,8 @@ TEMPLATE_CONTEXT_PROCESSORS += 'dealer.contrib.django.staff.context_processor',
 DEALER_PATH = os.path.dirname(BASE_DIR)
 
 # Chat settings
-CHAT_SERVER_URL = 'http://hvz.rucus.me:36452/chat'
-CHAT_ADMIN_URL = 'http://hvz.rucus.me:36452/admin/'
+CHAT_SERVER_URL = 'http://hvz.gryphus.io:36452/chat'
+CHAT_ADMIN_URL = 'http://hvz.gryphus.io:36452/admin/'
 
 ACTIVATION_MAIL_SUBJECT = 'Rhodes HvZ Account Activation Link'
-ACTIVATION_MAIL_MSG = 'https://hvz.rucus.me/users/activate/?key=%s'
+ACTIVATION_MAIL_MSG = 'https://hvz.gryphus.io/users/activate/?key=%s'
