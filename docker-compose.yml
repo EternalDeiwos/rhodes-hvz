@@ -28,7 +28,6 @@ services:
       - memcached
     environment:
       - C_FORCE_ROOT=true
-    user: "1004"
     command: "celery worker"
 
   hvz:
@@ -39,6 +38,5 @@ services:
       - celery
       - memcached
     restart: always
-    user: "1004"
     ports:
       - "127.0.01:5001:80"
