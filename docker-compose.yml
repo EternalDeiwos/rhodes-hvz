@@ -38,5 +38,9 @@ services:
       - celery
       - memcached
     restart: always
+    volumes:
+      - ./:/app
+    environment:
+      - WORKERS=4
     ports:
-      - "127.0.01:5001:80"
+      - "127.0.0.1:5001:8080"
