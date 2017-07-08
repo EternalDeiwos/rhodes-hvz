@@ -44,8 +44,6 @@ services:
 
   chat:
     build: .
-    links:
-      - hvz
     restart: always
     ports:
       - "127.0.0.1:36452:36452"
