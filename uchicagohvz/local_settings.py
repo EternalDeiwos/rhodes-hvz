@@ -242,4 +242,44 @@ CHAT_SERVER_URL = 'http://hvz.gryphus.io:36452/chat'
 CHAT_ADMIN_URL = 'http://hvz.gryphus.io:36452/admin/'
 
 ACTIVATION_MAIL_SUBJECT = 'Rhodes HvZ Account Activation Link'
-ACTIVATION_MAIL_MSG = 'https://hvz.gryphus.io/users/activate/?key=%s'
+
+ACTIVATION_MAIL_MSG = '''Hello Human,
+
+Congratulations on taking the first step toward playing in
+this year's game of Humans vs. Zombies.
+
+You are receiving this email because you have registered an
+account at the Rhodes University HvZ website.
+
+To activate your account please click this link:
+
+https://hvz.gryphus.io/users/activate/?key=%s
+
+After you have activated your account, you must
+complete your registration by doing the following:
+
+1. Log in and register for the game you wish to participate in.
+   This is separate from your account registration.
+
+2. ATTEND A SECURITY BRIEFING! Attending at least one of these
+   is mandatory as you will receive your ID card and sign a waiver
+   there.
+
+3. Wait for your game registration to be activated. This will only
+   happen if we have your signed waiver on file.
+
+If you opted-in for the High Value Target program then you are
+elligible to be selected as an Original Zombie. In addition, you
+must supply your cellphone number in your account profile on the
+website. If you are (randomly) selected, we will use the
+information on the site to call you to give you further instructions.
+In order to avoid spoiling the game for other players, please do not
+accept our phone call if you are around other players.
+
+If you have received this email in error or have any problems with
+your registration then please let us know by replying to this
+email.
+
+Regards
+The Admin Team
+'''
