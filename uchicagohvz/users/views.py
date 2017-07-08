@@ -48,7 +48,7 @@ class Activate(APIView):
 	success_url = '/users/activate/success'
 	@method_decorator(csrf_exempt)
 	def get(self, *args, **kwargs):
-		key = self.request.query_params.get('key', None)
+		key = self.request.GET.get('key', None)
 		if key:
 			profile = get_object_or_404(Profile, activation_key=key)
 			if profile:
@@ -106,7 +106,7 @@ class ResendActivationEmail(FormView):
 	form_class = ResendActivationEmailForm
 	template_name = "registration/resend_activation.html"
 	success_url = '/users/register/success/'
-	
+
 	def form_valid(self, form):
 		user = get_object_or_404(User, username=form.cleaned_data['username'])
 		if user.is_active:
@@ -142,7 +142,7 @@ class ShowProfile(DetailView):
 			return isinstance( t, datetime.timedelta )
 
 		context = super(ShowProfile, self).get_context_data(**kwargs)
-		if self.request.user.is_authenticated():		
+		if self.request.user.is_authenticated():
 			player_list = Player.objects.filter(user=self.request.user)
 			total_kills = 0
 			total_human_points = 0
@@ -154,13 +154,13 @@ class ShowProfile(DetailView):
 					total_kills += len(player.kills)
 					total_zombie_points += player.zombie_points
 					total_human_points += player.human_points
-					try:					
+					try:
 						lifespans.append(player.lifespan)
 					except:
 						pass
 					if player.human == False:
 						deaths += 1
-			
+
 				context['deaths'] = deaths
 				context['total_kills'] = total_kills
 				context['total_zombie_points'] = total_zombie_points
