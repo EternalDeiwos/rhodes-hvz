@@ -101,9 +101,10 @@ ChatCtrl = ($scope, $window, $cookies, chatServer, moment) ->
 
 	$scope.$on 'chat:authenticated', (e, data) ->
 	 	console.log(data)
-		if data.history?
+		if (data and data.history) {
 			$scope.messages = data.history.map (item) ->
 				messageFormat item
+		}
 
 		$scope.connected = true
 
