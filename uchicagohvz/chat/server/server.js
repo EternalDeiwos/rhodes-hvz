@@ -96,7 +96,7 @@ ChatServer = (function() {
         _this.broadcast({type: 'announce', announce: '#{ authData.name } has entered the fray'})
 
         let room = body.rooms.length === 1 ? body.rooms[0] : null
-        if (room) {
+        if (room && _this.messages[room]) {
           return conn.writeJSON({
             type: 'authenticated',
             history: _this.messages[room].length > 100
