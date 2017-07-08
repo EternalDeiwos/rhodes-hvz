@@ -24,6 +24,7 @@ ChatServer = (function() {
         }
       }
     });
+    this.messages = {}
     this.lobby = [];
     this.server.installHandlers(httpServer);
     this.server.on('connection', function(conn) {
@@ -88,7 +89,8 @@ ChatServer = (function() {
         _this.lobby.push(conn);
         _this.broadcast({type: 'announce', announce: '#{ authData.name } has entered the fray'});
         return conn.writeJSON({
-          type: 'authenticated'
+          type: 'authenticated',
+          history: _this.messages.length > 100 ? _this.messages.slice(-100) : _this.messages
         });
       }
     });
@@ -96,8 +98,15 @@ ChatServer = (function() {
 
   ChatServer.prototype.chat = function(conn, data) {
     if (conn.userObject.rooms.length === 1) {
-      data.room = conn.userObject.rooms[0];
-    }
+      let room = conn.userObject.rooms[0];
+      data.room = room
+
+      if (!Array.isArray(this.messages[room])) {
+        this.messages[room] = []
+      }
+
+      this.messages[room].push(data)
+    }}
     this.broadcast(data);
     return this.log(conn, data);
   };

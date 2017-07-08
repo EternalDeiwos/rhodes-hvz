@@ -91,19 +91,24 @@ ChatCtrl = ($scope, $window, $cookies, chatServer, moment) ->
 	dtNow = ->
 		return moment().format('hh:mm A')
 
+	messageFormat = (data) ->
+	  return "[#{ data.time }] #{ data.name }: #{ data.message }"
+
 	$scope.messages = []
 
 	$scope.$on 'sockjs:open', ->
 		chatServer.socket.sendJSON {type: 'auth', gameID: GAME_ID, sessionid: $cookies.sessionid, name: NAME}
 
-	$scope.$on 'chat:authenticated', ->
+	$scope.$on 'chat:authenticated', (e, data) ->
+		$scope.messages = data.history.map (item) ->
+			messageFormat item
 		$scope.connected = true
 
 	$scope.$on 'chat:announce', (e, data) ->
 		$scope.messages.push "#{ data.announce }"
 
 	$scope.$on 'chat:chat', (e, data) ->
-		$scope.messages.push "[#{ dtNow() }] #{ data.name }: #{ data.message }"
+		$scope.messages.push messageFormat(data)
 
 	$scope.$on 'chat:refresh', ->
 		$window.location.reload()
@@ -114,7 +119,7 @@ ChatCtrl = ($scope, $window, $cookies, chatServer, moment) ->
 
 	$scope.transmit = ->
 		if $scope.transmission and $scope.connected
-			chatServer.socket.sendJSON {type: 'chat', message: $scope.transmission, name: NAME}
+			chatServer.socket.sendJSON {type: 'chat', time: dtNow(), message: $scope.transmission, name: NAME}
 			$scope.transmission = ''
 
 </script>
