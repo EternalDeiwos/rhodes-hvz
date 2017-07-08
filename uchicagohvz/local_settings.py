@@ -152,15 +152,15 @@ COMPRESS_PRECOMPILERS = (
     ('text/coffeescript', 'coffee -bcs'),
     ('text/less', 'lessc {infile} {outfile}'),
 )
-COMPRESS_ROOT = os.path.join(BASE_DIR, 'static')
+COMPRESS_ROOT = os.path.join(BASE_DIR, 'static_root')
 
 # Datetime settings
 DATETIME_FORMAT = 'N j, Y g:i A'
 SHORT_DATETIME_FORMAT = 'd/m/Y g:i A'
 
 # User-uploaded media
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "static_root", "media")
+MEDIA_URL = "/static/media"
 
 # Authentication
 AUTHENTICATION_BACKENDS = (
