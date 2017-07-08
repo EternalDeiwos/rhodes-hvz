@@ -106,7 +106,7 @@ ChatServer = (function() {
       }
 
       this.messages[room].push(data)
-    }}
+    }
     this.broadcast(data);
     return this.log(conn, data);
   };
