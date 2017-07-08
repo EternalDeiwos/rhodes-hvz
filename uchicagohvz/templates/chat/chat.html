@@ -57,19 +57,19 @@ app.factory('chatServer', ($rootScope) => {
 					if (data.type) {
 						$rootScope.$broadcast("chat:#{ data.type }", data)
 					}
-				}
+				})
 			}
 
 			socket.onerror = (e) => {
 				$rootScope.$apply(() => {
 					$rootScope.$broadcast('sockjs:error', e.data)
-				}
+				})
 			}
 
 			socket.onclose = () => {
 				$rootScope.$apply(() => {
 					$rootScope.$broadcast('sockjs:close')
-				}
+				})
 			}
 
 			socket.sendJSON = (data) => {
@@ -117,7 +117,7 @@ app.directive('linkNewWindow', () => {
 
 ChatCtrl = ($scope, $window, $cookies, chatServer, moment) => {
 	// Utilities
-	let dtNow = => {
+	let dtNow = () => {
 		return moment().format('hh:mm A')
 	}
 
