@@ -160,7 +160,7 @@ SHORT_DATETIME_FORMAT = 'd/m/Y g:i A'
 
 # User-uploaded media
 MEDIA_ROOT = os.path.join(BASE_DIR, "static_root", "media")
-MEDIA_URL = "/static/media"
+MEDIA_URL = "/static/media/"
 
 # Authentication
 AUTHENTICATION_BACKENDS = (
