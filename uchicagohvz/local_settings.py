@@ -211,6 +211,8 @@ GEOPOSITION_MARKER_OPTIONS = {
     'position': { 'lat': -33.314236, 'lng': 26.5188267},
 }
 
+DEFAULT_INDEX_TABLESPACE = ''
+
 # Celery configuration
 BROKER_URL = 'redis://redis:6379/3'
 
