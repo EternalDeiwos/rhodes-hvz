@@ -100,11 +100,9 @@ ChatCtrl = ($scope, $window, $cookies, chatServer, moment) ->
 		chatServer.socket.sendJSON {type: 'auth', gameID: GAME_ID, sessionid: $cookies.sessionid, name: NAME}
 
 	$scope.$on 'chat:authenticated', (e, data) ->
-	 	console.log(data)
-		if (data and data.history) {
+		if data and data.history
 			$scope.messages = data.history.map (item) ->
 				messageFormat item
-		}
 
 		$scope.connected = true
 
