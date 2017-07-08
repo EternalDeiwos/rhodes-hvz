@@ -33,7 +33,7 @@ REST_FRAMEWORK = {
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 CELERY_EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 CELERY_EMAIL_TASK_CONFIG = {
-    'queue': 'email',
+    'queue': 'celery',
     'rate_limit': '20/m'
 }
 
