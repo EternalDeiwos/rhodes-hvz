@@ -31,14 +31,6 @@ class ListGames(ListView):
 	model = Game
 	template_name = 'game/list.html'
 
-	@property
-	def registered_games(self):
-		players = Player.objects.get(game=game, user=self.request.user)
-		games = []
-		for player in players:
-			games.append(player.game)
-		return games
-
 class ShowGame(DetailView):
 	model = Game
 	template_name = 'game/show.html'
