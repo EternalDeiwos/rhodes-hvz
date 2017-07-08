@@ -47,4 +47,4 @@ services:
     restart: always
     ports:
       - "127.0.0.1:36452:36452"
-    command: "cd uchicagohvz/chat/server && npm start"
+    command: "node uchicagohvz/chat/server/server.js"
