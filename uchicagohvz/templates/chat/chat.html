@@ -1,7 +1,7 @@
 {% extends 'base.html' %}{% load compress %}
 {% block content %}
 <div class="page-header">
-	<h1>{% if player.human %}<span class="text-success">RADIO</span>{% else %}<span class="text-danger">THE HORDE</span>{% endif %} <small>{{ player.game.name }}</small></h1>
+	<h1>{% if player.human %}<span class="text-success">Miskatonic University Daily Mail</span>{% else %}<span class="text-danger">Hermetic Order of the Silver Twilight</span>{% endif %} <small>{{ player.game.name }}</small></h1>
 </div>
 
 <p class="lead">
@@ -10,7 +10,7 @@
 	{% endif %}
 </p>
 
-<p class="text-muted">Transcripts may be monitored or recorded for quality assurance or training purposes. -- {% if player.human %}the SCP{% else %}the Chaos Insurgency{% endif %}</p>
+<p class="text-muted">Chat messages are recorded for quality assurance.</p>
 
 <div id="chat" ng-app="chat" ng-controller="ChatCtrl" ng-cloak>
 	<div class="alert alert-danger" ng-show="!connected">The chat server is currently offline due to a zombie attack. Please try again later.</div>
