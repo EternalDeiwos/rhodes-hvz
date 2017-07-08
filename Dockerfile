@@ -10,8 +10,6 @@ EXPOSE 8080
 
 ENV WORKERS 4
 ENV WSGI_APP uchicagohvz.wsgi
-ENV CELERY_APP uchicagohvz.celery_app
-ENV BROKER_URL redis://redis:6379/3
 
 RUN apt-get update
 RUN apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev -y
