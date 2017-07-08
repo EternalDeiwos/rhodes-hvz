@@ -66,15 +66,15 @@ ChatServer = (function() {
   ChatServer.prototype.auth = function(conn, authData) {
     var _this = this;
     getreq = {
-      uri: "https://127.0.0.1/game/" + authData.gameID + "/chat/auth/",
+      uri: "https://hvz.gryphus.io/game/" + authData.gameID + "/chat/auth/",
       headers: {
-        Host: 'hvz.rucus.me',
+        Host: 'hvz.gryphus.io',
         Cookie: "sessionid=" + authData.sessionid
       },
       json: true
     }
     return request.get(
-      getreq, 
+      getreq,
       function(err, res, body) {
       if (res.statusCode === 200) {
         conn.userObject = body;
