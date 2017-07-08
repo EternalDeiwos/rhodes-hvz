@@ -28,9 +28,7 @@ services:
       - memcached
     environment:
       - C_FORCE_ROOT=true
-      - CELERY_APP=uchicagohvz.celery_app
-      - BROKER_URL=redis://redis:6379/3
-    command: "celery worker -b $BROKER_URL --app $CELERY_APP"
+    command: "celery worker -b redis://redis:6379/3 --app uchicagohvz.celery_app"
 
   hvz:
     build: .
