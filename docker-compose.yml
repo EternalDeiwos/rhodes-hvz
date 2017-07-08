@@ -37,6 +37,8 @@ services:
       - celery
       - memcached
     restart: always
+    volumes:
+      - /var/www/hvz.gryphus.io/static:/app/uchicagohvz/static_root
     environment:
       - WORKERS=4
     ports:

@@ -3,6 +3,7 @@ FROM python:2
 RUN mkdir /app
 
 COPY . /app
+VOLUME /app/uchicagohvz/static_root
 
 EXPOSE 8080
 
@@ -17,5 +18,6 @@ RUN npm i
 
 WORKDIR /app
 RUN pip install -r ./requirements.txt
+RUN python manage.py collectstatic --noinput
 
 CMD gunicorn --workers $WORKERS --access-logfile - --error-logfile - -b 0.0.0.0:8080 $WSGI_APP
