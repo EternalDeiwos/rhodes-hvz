@@ -13,7 +13,6 @@ services:
     image: memcached:alpine
     restart: always
     mem_limit: 128M
-    # mem_reservation: 64M
 
   redis:
     image: redis:alpine
@@ -42,3 +41,12 @@ services:
       - WORKERS=4
     ports:
       - "127.0.0.1:5001:8080"
+
+  chat:
+    build: .
+    links:
+      - hvz
+    restart: always
+    ports:
+      - "127.0.0.1:36452:36452"
+    command: "cd uchicagohvz/chat/server && npm start"
