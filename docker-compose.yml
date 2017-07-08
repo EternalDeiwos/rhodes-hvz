@@ -3,7 +3,7 @@ services:
   postgres:
     image: postgres:alpine
     volumes:
-      - ./pg_data:/var/lib/postgresql/data
+      - ../hvz_pgdb:/var/lib/postgresql/data
     restart: always
     environment:
       - POSTGRES_PASSWORD=hvzhvz
@@ -28,7 +28,9 @@ services:
       - memcached
     environment:
       - C_FORCE_ROOT=true
-    command: "celery worker"
+      - CELERY_APP=uchicagohvz.celery_app
+      - BROKER_URL=redis://redis:6379/3
+    command: "celery worker -b $BROKER_URL --app $CELERY_APP"
 
   hvz:
     build: .
