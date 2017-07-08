@@ -94,10 +94,21 @@ ChatServer = (function() {
         })
         _this.lobby.push(conn)
         _this.broadcast({type: 'announce', announce: '#{ authData.name } has entered the fray'})
-        return conn.writeJSON({
-          type: 'authenticated',
-          history: _this.messages.length > 100 ? _this.messages.slice(-100) : _this.messages
-        })
+
+        let room = body.rooms.length === 1 ? body.rooms[0] : null
+        if (room) {
+          return conn.writeJSON({
+            type: 'authenticated',
+            history: _this.messages[room].length > 100
+              ? _this.messages[room].slice(-100)
+              : _this.messages[room]
+          })
+
+        } else {
+          return conn.writeJSON({
+            type: 'authenticated'
+          })
+        }
       }
     })
   }
