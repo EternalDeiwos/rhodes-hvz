@@ -15,12 +15,7 @@
 		{{ game.name }}
 	  </a></h1>
 	  <h3>
-	  	{% if game.status == "registration" and game.id in registered_games %}
-	  	<span class="text-success">Registered</span>
-	    {% elif game.status == "registration" %}
-	    {% for item in registered_games %}
-	    <span>{{item}}</span>
-	    {% endfor %}
+	    {% if game.status == "registration" %}
 	    <span class="text-success">Open for registration</span>
 	    {% elif game.status == "in_progress" %}
 	    <span class="text-success">LIVE</span>
