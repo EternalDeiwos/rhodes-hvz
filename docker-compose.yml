@@ -25,6 +25,8 @@ services:
       - postgres:db
       - redis
       - memcached
+    volumes:
+      - ./:/app
     environment:
       - C_FORCE_ROOT=true
     command: "celery worker -b redis://redis:6379/3 --app uchicagohvz.celery_app"
@@ -38,7 +40,7 @@ services:
       - memcached
     restart: always
     volumes:
-      - /var/www/hvz.gryphus.io/static:/app/uchicagohvz/static_root
+      - ./:/app
     environment:
       - WORKERS=4
     ports:
@@ -49,4 +51,6 @@ services:
     restart: always
     ports:
       - "127.0.0.1:36452:36452"
+    volumes:
+      - ./:/app
     command: "node uchicagohvz/chat/server/server.js"
