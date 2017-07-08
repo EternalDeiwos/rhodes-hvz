@@ -10,8 +10,6 @@ ENV WORKERS 4
 ENV WSGI_APP uchicagohvz.wsgi
 
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
-
-RUN apt-get update
 RUN apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev nodejs -y
 
 WORKDIR /app/uchicagohvz/chat/server
