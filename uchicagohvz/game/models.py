@@ -32,7 +32,7 @@ class Game(models.Model):
 	start_date = models.DateTimeField()
 	end_date = models.DateTimeField()
 	rules = models.FileField(upload_to=gen_rules_filename, storage=OverwriteFileSystemStorage())
-	color = models.CharField(max_length=64, default="#FFFFFF")	
+	color = models.CharField(max_length=64, default="#FFFFFF")
 	flavor_h = models.TextField(max_length=6000, default="")
 	flavor_z = models.TextField(max_length=6000, default="")
 	flavor_n = models.TextField(max_length=6000, default="")
@@ -445,7 +445,7 @@ class Kill(MPTTModel):
 	@property
 	def geotagged(self):
 		return self.lat and self.lng
-	
+
 	@models.permalink
 	def get_absolute_url(self):
 		return ('kill|show', [self.pk])
@@ -483,16 +483,26 @@ REDEEM_TYPES = (
 
 STATIC = '/static/img/mission_markers/'
 MISSION_IMAGE_TYPES = (
-	(STATIC + 'bag.png', 		'Bag'),
-	(STATIC + 'bottle.png', 	'Bottle'),
-	(STATIC + 'food.png', 		'Food'),
-	(STATIC + 'hospital.png', 	'Hospital'),
-	(STATIC + 'medical.png', 	'Medical'),
-	(STATIC + 'petrol.png', 	'Petrol'),
-	(STATIC + 'pills.png', 		'Pills'),
-	(STATIC + 'plane.png', 		'Plane'),
-	(STATIC + 'tools.png', 		'Tools'),
-	(STATIC + 'tooth.png', 		'Tooth'),
+	(STATIC + 'bag.png', 	 	    'Bag'),
+	(STATIC + 'bottle.png', 	  'Bottle'),
+	(STATIC + 'food.png', 		  'Food'),
+	(STATIC + 'hospital.png',   'Hospital'),
+	(STATIC + 'medical.png', 	  'Medical'),
+	(STATIC + 'petrol.png', 	  'Petrol'),
+	(STATIC + 'pills.png', 		  'Pills'),
+	(STATIC + 'plane.png', 		  'Plane'),
+	(STATIC + 'tools.png', 		  'Tools'),
+	(STATIC + 'tooth.png', 		  'Tooth'),
+	(STATIC + 'Battle.png', 	  'Human Battle'),
+	(STATIC + 'Hunt.png', 		  'Hunt'),
+	(STATIC + 'Mission.png', 	  'Mission'),
+	(STATIC + 'Search.png', 	  'Search'),
+	(STATIC + 'SOS.png', 		    'SOS'),
+	(STATIC + 'SupplyDrop.png', 'Supply Drop'),
+	(STATIC + 'ZBattle.png', 		'Zombie Battle'),
+	(STATIC + 'ZMission.png', 	'Zombie Mission'),
+	(STATIC + 'Zombie.png', 		'Zombie'),
+	(STATIC + 'ZSearch.png', 		'Zombie Search'),
 )
 
 class Mission(models.Model):
@@ -532,7 +542,7 @@ class Mission(models.Model):
 class Award(models.Model):
 	class Meta:
 		unique_together = (('game', 'code'))
-	
+
 	game = models.ForeignKey(Game, related_name='+')
 	name = models.CharField(max_length=255)
 	group = models.ForeignKey(Mission, related_name='mission', null=True, blank=True)
@@ -575,7 +585,7 @@ class HighValueTarget(models.Model):
 
 	def __unicode__(self):
 		return "%s" % (self.player)
-	
+
 	def expired(self):
 		return timezone.now() > self.end_date
 
