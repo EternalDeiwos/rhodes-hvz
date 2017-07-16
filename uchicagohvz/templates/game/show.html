@@ -85,7 +85,7 @@
 <hr>
 <div class="row">
 
-	{% if player.active and game.status == 'in_progress' %}
+	{% if player.active and not player.starved and not player.suspended and game.status == 'in_progress' %}
 	<a class="btn btn-block bigger btn-{% if player.human %}success{% else %}danger{% endif %}" href="{% url 'game|chat' pk=game.pk %}" target="_blank">
 		{% if player.human %}Get on the radio{% else %}ENTER FEEDING AREA{% endif %}
 	</a>
@@ -103,7 +103,7 @@
 			{% endif %}
 			{% endif %}
 		</div>
-		{% if player.active and  game.status == 'in_progress' %}
+		{% if player.active and not player.starved and not player.suspended and game.status == 'in_progress' %}
 
 		<div class="row">
 			<h3>My Bite Code</h3>
@@ -179,7 +179,7 @@
 	<div class="col-lg-4">
 		<h2>My Score</h2>
 		{% if game.status == 'in_progress' or game.status == 'finished' %}
-		{% if player.active %}
+		{% if player.active and not player.starved and not player.suspended %}
 		<h4 class="point-marker"><span class="text-success">{{ player.human_points }} human points</span></h4>
 		{% if not player.human %}<h4 class="point-marker"><span class="text-danger">{{ player.zombie_points }} zombie points</span></h4>{% endif %}
 		<p>You are ranked <b>#{{ player_rank.0 }}</b> of {{ player_rank.1 }} {% if player.human %}humans{% else %}zombies{% endif %}.
