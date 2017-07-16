@@ -46,11 +46,11 @@
 		{% if user.is_authenticated and not player %}
 		<p class="text-info">Game in progress. Registration is no longer possible.</p>
 		{% elif player and not player.active %}
-		<p class="text-danger">You registered for this game but have not been activated. Please contact a moderator for assistance.</p>
+		<p class="text-danger">You registered for this game but have not been activated. Please <a href="//contact">contact</a> a moderator for assistance.</p>
 		{% elif player and player.starved %}
 		<p class="text-danger">You have missed too many supply drops and have "starved". You may no longer participate in the game.</p>
 		{% elif player and player.suspended %}
-		<p class="text-danger">You have been suspended by an administrator. You may not participate in the game while you are suspended. Please contact the head administrator ASAP if you have not done so already.</p>
+		<p class="text-danger">You have been suspended by an administrator. You may not participate in the game while you are suspended. Please <a href="//contact">contact</a> the head administrator ASAP if you have not done so already.</p>
 		{% endif %}
 		{% elif game.status == "finished" %}
 		<h4 class="text-info">Finished</h4>
