@@ -19,7 +19,7 @@ class KillSerializer(serializers.ModelSerializer):
 	def get_location(self, obj):
 		if not obj.pos:
 			return None
-		return (obj.pos.latitude, obj.pos.longitude)
+		return obj.pos.rsplit(',')
 
 class MissionSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -32,7 +32,7 @@ class MissionSerializer(serializers.ModelSerializer):
 	def get_location(self, obj):
 		if not obj.pos:
 			return None
-		return (obj.pos.latitude, obj.pos.longitude)
+		return obj.pos.rsplit(',')
 
 	def get_rtype(self, obj):
 		return obj.def_redeem_type
