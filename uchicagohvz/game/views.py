@@ -164,6 +164,8 @@ class EnterBiteCode(FormView):
 		self.game = get_object_or_404(Game, id=self.kwargs['pk'])
 		if self.game.status == 'in_progress':
 			self.killer = get_object_or_404(Player, game=self.game, active=True, human=False, user=self.request.user)
+			if self.killer.starved or self.killer.suspended:
+				raise PermissionDenied
 			kwargs['killer'] = self.killer
 			kwargs['require_location'] = True
 			return kwargs
@@ -235,6 +237,8 @@ class SubmitAwardCode(BaseFormView):
 		self.game = get_object_or_404(Game, id=self.kwargs['pk'])
 		if self.game.status == 'in_progress':
 			self.player = get_object_or_404(Player, game=self.game, active=True, user=self.request.user)
+			if self.player.starved or self.player.suspended:
+				raise PermissionDenied
 			kwargs['player'] = self.player
 			return kwargs
 		else:
