@@ -59,6 +59,8 @@ class MissionFeed(ListAPIView):
 		game_id = self.kwargs['pk']
 		user_id = self.request.user.id
 		player = get_object_or_404(Player, game__id=game_id, user__id=user_id)
+		if not player.active or player.starved or player.suspended:
+			raise PermissionDenied
 		now = timezone.now()
 		# return missions that are currently available (i.e. now is between start date and end date)
 		missions = Mission.objects.exclude(start_date__gte=now).filter(end_date__gte=now).filter(game__id=game_id).order_by('end_date')
@@ -86,7 +88,7 @@ class Humans(APIView):
 
 class Zombies(APIView):
 	permission_classes = (IsAdminUser, )
-	
+
 	def get(self, request, format=None, *args, **kwargs):
 		game_id = self.kwargs['pk']
 		players = Player.objects.exclude(active=False).exclude(human=True).filter(game__id=game_id)
@@ -94,7 +96,7 @@ class Zombies(APIView):
 
 class Players(APIView):
 	permission_classes = (IsAdminUser, )
-	
+
 	def get(self, request, format=None, *args, **kwargs):
 		game_id = self.kwargs['pk']
 		players = Player.objects.exclude(active=False).filter(game__id=game_id)
@@ -102,7 +104,7 @@ class Players(APIView):
 
 class HCommando(APIView):
 	permission_classes = (IsAdminUser, )
-	
+
 	def get(self, request, format=None, *args, **kwargs):
 		game_id = self.kwargs['pk']
 		hvts = HighValueTarget.objects.exclude(player__active=False).filter(player__game__id=game_id)
@@ -110,7 +112,7 @@ class HCommando(APIView):
 
 class ZCommando(APIView):
 	permission_classes = (IsAdminUser, )
-	
+
 	def get(self, request, format=None, *args, **kwargs):
 		return Response('')
 
