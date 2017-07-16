@@ -32,6 +32,8 @@ class ChatAuth(APIView):
 		game = get_object_or_404(Game.objects.games_in_progress(), pk=int(kwargs['pk']))
 		player = get_object_or_404(game.players, active=True, user=self.request.user)
 		rooms = []
+		if not player.active or player.starved or player.suspended:
+			raise PermissionDenied
 		if player.human:
 			rooms.append("%s-human" % (game.pk))
 		else:
