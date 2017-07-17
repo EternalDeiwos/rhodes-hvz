@@ -73,7 +73,7 @@ class ShowGame(DetailView):
 
 				if player.active and not player.starved and not player.suspended:
 					now = timezone.now()
-					missions = Mission.objects.exclude(start_date__gte=now).filter(end_date__gte=now).filter(game__id=game_id).order_by('end_date')
+					missions = Mission.objects.exclude(start_date__gte=now).filter(end_date__gte=now).filter(game__id=self.object.id).order_by('end_date')
 					if player.human:
 						context['active_missions'] = missions.exclude(def_redeem_type='Z')
 					else:
