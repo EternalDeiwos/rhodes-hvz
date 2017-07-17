@@ -9,12 +9,16 @@ class KillSerializer(serializers.ModelSerializer):
 	killer = serializers.SerializerMethodField(method_name='get_killer')
 	victim = serializers.SerializerMethodField(method_name='get_victim')
 	location = serializers.SerializerMethodField(method_name='get_location')
+	location_description = serializers.SerializerMethodField(method_name='get_location_description')
 
 	def get_killer(self, obj):
 		return obj.killer.display_name
 
 	def get_victim(self, obj):
 		return obj.victim.display_name
+
+	def get_location_description(self, obj):
+		return obj.desc
 
 	def get_location(self, obj):
 		if not obj.pos:
