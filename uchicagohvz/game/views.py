@@ -78,8 +78,6 @@ class ShowGame(DetailView):
 						context['active_missions'] = missions.exclude(def_redeem_type='Z')
 					else:
 						context['active_missions'] = missions.exclude(def_redeem_type='H')
-				else:
-					context['active_missions'] = []
 		return context
 
 
