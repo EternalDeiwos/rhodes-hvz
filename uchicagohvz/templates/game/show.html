@@ -544,13 +544,12 @@ $.get("data/missions/")
 			if k.location != null
 				marker = new google.maps.Marker {
 					map: map,
-					icon: {
-						url: k.img,
-						size: new google.maps.Size(529, 529),
-						origin: new google.maps.Point(0, 0),
-						anchor: new google.maps.Point(265, 529),
-						scaledSize: new google.maps.Size(64, 64)
-					},
+					icon: new google.maps.MarkerImage(
+						k.img, # url
+						new google.maps.Size(529, 529), # size
+						new google.maps.Point(0, 0), # origin
+						new google.maps.Point(265, 529), # anchor
+						new google.maps.Size(64, 64)) # scaledSize
 					position: new google.maps.LatLng(k.location[0], k.location[1])
 
 				}
