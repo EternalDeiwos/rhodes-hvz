@@ -485,16 +485,16 @@ REDEEM_TYPES = (
 
 STATIC = '/static/img/mission_markers/'
 MISSION_IMAGE_TYPES = (
-	(STATIC + 'bag.png', 	 	    'Bag'),
-	(STATIC + 'bottle.png', 	  'Bottle'),
-	(STATIC + 'food.png', 		  'Food'),
-	(STATIC + 'hospital.png',   'Hospital'),
-	(STATIC + 'medical.png', 	  'Medical'),
-	(STATIC + 'petrol.png', 	  'Petrol'),
-	(STATIC + 'pills.png', 		  'Pills'),
-	(STATIC + 'plane.png', 		  'Plane'),
-	(STATIC + 'tools.png', 		  'Tools'),
-	(STATIC + 'tooth.png', 		  'Tooth'),
+	# (STATIC + 'bag.png', 	 	    'Bag'),
+	# (STATIC + 'bottle.png', 	  'Bottle'),
+	# (STATIC + 'food.png', 		  'Food'),
+	# (STATIC + 'hospital.png',   'Hospital'),
+	# (STATIC + 'medical.png', 	  'Medical'),
+	# (STATIC + 'petrol.png', 	  'Petrol'),
+	# (STATIC + 'pills.png', 		  'Pills'),
+	# (STATIC + 'plane.png', 		  'Plane'),
+	# (STATIC + 'tools.png', 		  'Tools'),
+	# (STATIC + 'tooth.png', 		  'Tooth'),
 	(STATIC + 'Battle.png', 	  'Human Battle'),
 	(STATIC + 'Hunt.png', 		  'Hunt'),
 	(STATIC + 'Mission.png', 	  'Mission'),
@@ -514,6 +514,7 @@ class Mission(models.Model):
 	game = models.ForeignKey(Game, related_name='+')
 	name = models.CharField(max_length=255)
 	pos = GeopositionField(null=True, blank=True, verbose_name='position')
+	desc = models.CharField(max_length=255)
 	# lat = models.FloatField(null=True, blank=True, verbose_name='latitude')
 	# lng = models.FloatField(null=True, blank=True, verbose_name='longitude')
 	img = models.CharField(max_length=100, choices=MISSION_IMAGE_TYPES) # Path to map image
