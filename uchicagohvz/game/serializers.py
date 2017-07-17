@@ -4,7 +4,7 @@ from uchicagohvz.game.models import *
 class KillSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Kill
-		fields = ('id', 'killer', 'victim', 'location', 'desc', 'date', 'points')
+		fields = ('id', 'killer', 'victim', 'location', 'date', 'points')
 
 	killer = serializers.SerializerMethodField(method_name='get_killer')
 	victim = serializers.SerializerMethodField(method_name='get_victim')
@@ -24,7 +24,7 @@ class KillSerializer(serializers.ModelSerializer):
 class MissionSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Mission
-		fields = ('id', 'name', 'end_date', 'img', 'location', 'rtype')
+		fields = ('id', 'name', 'end_date', 'img', 'desc', 'location', 'rtype')
 
 	location = serializers.SerializerMethodField(method_name='get_location')
 	rtype = serializers.SerializerMethodField(method_name='get_rtype')
