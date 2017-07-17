@@ -178,6 +178,14 @@
 		<h2>Squads</h2>
 		<a href="{% url 'game|choose_squad' pk=game.id %}">Register a new squad or join an existing one here.</a>
 		{% endif %}
+		<h2>Active Missions</h2>
+		<ul>
+			{% for mission in active_missions %}
+			<li>
+				{{mission.name}} @ {{mission.desc}} from {{mission.start_date}} to {{mission.end_date}}
+			</li>
+			{% endfor %}
+		</ul>
 	</div>
 
 	<div class="col-lg-4">
