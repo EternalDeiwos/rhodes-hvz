@@ -514,7 +514,7 @@ class Mission(models.Model):
 	game = models.ForeignKey(Game, related_name='+')
 	name = models.CharField(max_length=255)
 	pos = GeopositionField(null=True, blank=True, verbose_name='position')
-	desc = models.CharField(max_length=255)
+	desc = models.CharField(max_length=255, blank=True, default='')
 	# lat = models.FloatField(null=True, blank=True, verbose_name='latitude')
 	# lng = models.FloatField(null=True, blank=True, verbose_name='longitude')
 	img = models.CharField(max_length=100, choices=MISSION_IMAGE_TYPES) # Path to map image
