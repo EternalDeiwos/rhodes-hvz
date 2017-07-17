@@ -543,17 +543,17 @@ $.get("data/missions/")
 		for k in data
 			if k.location != null
 				marker = new google.maps.Marker {
-						map: map,
-						icon: {
-							url: k.img,
-							size: new google.maps.Size(529, 529),
-							origin: new google.maps.Point(0, 0),
-							anchor: new google.maps.Point(265, 529),
-							scaledSize: new google.maps.Size(64, 64)
-						},
-						position: new google.maps.LatLng(k.location[0], k.location[1])
+					map: map,
+					icon: {
+						url: k.img,
+						size: new google.maps.Size(529, 529),
+						origin: new google.maps.Point(0, 0),
+						anchor: new google.maps.Point(265, 529),
+						scaledSize: new google.maps.Size(64, 64)
+					},
+					position: new google.maps.LatLng(k.location[0], k.location[1])
 
-					}
+				}
 				endDT = moment(k.end_date).format('D/M/YY h:mm:ss A')
 				redeemString = "ERROR"
 				redeemString = "Human Only" if k.rtype is 'H'
