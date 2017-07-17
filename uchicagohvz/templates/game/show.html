@@ -178,8 +178,8 @@
 		<h2>Squads</h2>
 		<a href="{% url 'game|choose_squad' pk=game.id %}">Register a new squad or join an existing one here.</a>
 		{% endif %}
-		{% if active_missions %}
 		<h2>Active Missions</h2>
+		{% if active_missions %}
 		<ul>
 			{% for mission in active_missions %}
 			<li>
@@ -187,6 +187,8 @@
 			</li>
 			{% endfor %}
 		</ul>
+		{% else %}
+		<p>No active missions (at the moment). Keep checking the page for missions.</p>
 		{% endif %}
 	</div>
 
