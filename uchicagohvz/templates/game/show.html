@@ -542,16 +542,15 @@ $.get("data/missions/")
 		markers = []
 		for k in data
 			if k.location != null
-			  image = {
-			  	url: k.img,
-			  	size: new google.maps.Size(529, 529),
-			  	origin: new google.maps.Point(0, 0),
-			  	anchor: new google.maps.Point(265, 529),
-			  	scaledSize: new google.maps.Size(64, 64)
-			  }
 				marker = new google.maps.Marker {
 						map: map,
-						icon: image,
+						icon: {
+							url: k.img,
+							size: new google.maps.Size(529, 529),
+							origin: new google.maps.Point(0, 0),
+							anchor: new google.maps.Point(265, 529),
+							scaledSize: new google.maps.Size(64, 64)
+						},
 						position: new google.maps.LatLng(k.location[0], k.location[1])
 
 					}
@@ -587,7 +586,7 @@ $.get("data/humans-per-hour/")
 				zoomType: 'xy',
 			},
 			colors: ['#7cb5ec', '#4369FF', '#90ed7d', '#f7a35c', '#8085e9',
-   '#f15c80', '#e4d354', '#FF85e8', '#8d4653', '#91e8e1', '#2397fe', '#FF115a', '#102bBF'],
+	 '#f15c80', '#e4d354', '#FF85e8', '#8d4653', '#91e8e1', '#2397fe', '#FF115a', '#102bBF'],
 			credits: {
 				enabled: false
 			},
