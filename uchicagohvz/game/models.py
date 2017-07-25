@@ -46,7 +46,7 @@ class Game(models.Model):
 		return self.players.all()
 
 	def get_active_players(self):
-		return self.players.filter(active=True, starved=True, user__is_staff=False)
+		return self.players.filter(active=True, starved=False, user__is_staff=False)
 
 	def get_humans(self):
 		return self.get_active_players().filter(human=True, starved=False, user__is_staff=False)
