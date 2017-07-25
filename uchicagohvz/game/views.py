@@ -219,6 +219,18 @@ class RequestAwardCode(APIView):
 		award.save()
 		return Response(award.code)
 
+class RequestMultipleAwardCode(APIView):
+	permission_classes = (IsAdminUser, )
+	def get(self, request, format=None, *args, **kwargs):
+		mission = get_object_or_404(Mission, id=self.kwargs['mk'])
+		awards = []
+		number = request.GET.get('q', 50)
+		for i in range(0, number):
+			award = Award.objects.create(group=mission)
+			award.save()
+			awards.append(award.code)
+		return Response(', '.join(awards))
+
 class SubmitAwardCode(BaseFormView):
 	form_class = AwardCodeForm
 	http_method_names = ['post']
