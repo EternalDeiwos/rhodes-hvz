@@ -49,13 +49,13 @@ class Game(models.Model):
 		return self.players.filter(active=True)
 
 	def get_humans(self):
-		return self.get_active_players().filter(human=True)
+		return self.get_active_players().filter(human=True, starved=False, user__is_staff=False)
 
 	def get_zombies(self):
-		return self.get_active_players().filter(human=False)
+		return self.get_active_players().filter(human=False, user__is_staff=False)
 
 	def get_players_in_dorm(self, dorm):
-		return self.get_active_players().filter(dorm=dorm)
+		return self.get_active_players().filter(dorm=dorm, user__is_staff=False)
 
 	def get_kills(self):
 		"""
